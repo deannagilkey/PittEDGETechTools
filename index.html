@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pitt EDGE Faculty Training Course &mdash; Instructional Design Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0E1A2B;
+  --navy-deep:#001F3F;
+  --navy:#00376B;
+  --blue:#0B4FA3;
+  --gold:#FFB81C;
+  --gold-deep:#C98A00;
+  --paper:#F6F7F9;
+  --panel:#FFFFFF;
+  --muted:#5B6472;
+  --line:#E1E4EA;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --ink:#EAEDF2;
+    --navy-deep:#00152A;
+    --navy:#062A4D;
+    --blue:#4C8DE0;
+    --gold:#FFC94D;
+    --gold-deep:#FFB81C;
+    --paper:#0B1220;
+    --panel:#121A2B;
+    --muted:#9AA5B5;
+    --line:#223049;
+  }
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:'IBM Plex Sans', -apple-system, sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.6;
+}
+h1,h2,h3{
+  font-family:'Source Serif 4', Georgia, serif;
+  margin:0;
+  color:var(--ink);
+}
+p{margin:0 0 1em 0; max-width:66ch;}
+a{color:var(--blue);}
+img{max-width:100%;display:block;}
+
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--gold);color:var(--navy-deep);padding:.6em 1em;z-index:200;}
+.skip-link:focus{left:1em;top:1em;}
+
+/* HERO */
+.hero{
+  background:linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 100%);
+  color:#F4F6FA;
+  padding:4.5rem 1.5rem 3.5rem;
+}
+.hero-inner{max-width:1180px;margin:0 auto;}
+.eyebrow-pill{
+  display:inline-block;
+  background:var(--gold);
+  color:var(--navy-deep);
+  font-family:'IBM Plex Sans',sans-serif;
+  font-weight:600;
+  font-size:.8rem;
+  letter-spacing:.02em;
+  padding:.35em 1em;
+  border-radius:999px;
+  margin-bottom:1.4rem;
+  opacity:0;
+  animation: rise .6s ease-out .1s forwards;
+}
+.hero h1{
+  font-size:clamp(2rem, 4vw, 3.1rem);
+  font-weight:600;
+  line-height:1.15;
+  max-width:18ch;
+  color:#fff;
+  opacity:0;
+  animation: rise .7s ease-out .22s forwards;
+}
+.hero .dek{
+  margin-top:1.3rem;
+  font-size:1.1rem;
+  max-width:62ch;
+  color:#C9D6E8;
+  opacity:0;
+  animation: rise .7s ease-out .36s forwards;
+}
+.hero .dek strong{color:#fff;font-weight:600;}
+.byline{
+  margin-top:1.4rem;
+  font-family:'IBM Plex Sans',sans-serif;
+  font-size:.95rem;
+  font-weight:600;
+  letter-spacing:.02em;
+  color:var(--gold);
+  opacity:0;
+  animation: rise .7s ease-out .44s forwards;
+}
+@media (prefers-reduced-motion: reduce){ .byline{animation:none;opacity:1;} }
+.stat-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:2.4rem;
+  margin-top:2.4rem;
+  opacity:0;
+  animation: rise .7s ease-out .5s forwards;
+}
+.stat-row div{min-width:120px;}
+.stat-num{font-family:'Source Serif 4',serif;font-size:2rem;color:var(--gold);line-height:1;}
+.stat-label{font-size:.85rem;color:#9FB0C8;margin-top:.3rem;}
+@keyframes rise{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+@media (prefers-reduced-motion: reduce){
+  .eyebrow-pill,.hero h1,.hero .dek,.stat-row{animation:none;opacity:1;}
+}
+
+.edit-note{
+  max-width:1180px;margin:0 auto; padding: 0 1.5rem;
+}
+.edit-note p{
+  font-size:.82rem;color:#9FB0C8;font-style:italic;margin-top:1.2rem;max-width:70ch;
+}
+
+/* LAYOUT */
+.layout{
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 1.5rem;
+  display:grid;
+  grid-template-columns:200px 1fr;
+  gap:3rem;
+  align-items:start;
+}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;}
+}
+
+/* NAV */
+.sidenav{
+  position:sticky;
+  top:0;
+  padding-top:2.5rem;
+  display:flex;
+  flex-direction:column;
+  gap:.1rem;
+}
+@media (max-width:860px){
+  .sidenav{
+    position:static;
+    flex-direction:row;
+    overflow-x:auto;
+    gap:.4rem;
+    padding:1rem 0;
+    border-bottom:1px solid var(--line);
+    -webkit-overflow-scrolling:touch;
+  }
+}
+.nav-link{
+  font-size:.88rem;
+  color:var(--muted);
+  text-decoration:none;
+  padding:.5em .2em;
+  border-left:2px solid transparent;
+  padding-left:.9em;
+  white-space:nowrap;
+  transition:color .15s, border-color .15s;
+}
+.nav-link:hover{color:var(--blue);}
+.nav-link.active{color:var(--navy);font-weight:600;border-left-color:var(--gold);}
+@media (max-width:860px){
+  .nav-link{border-left:none;border-bottom:2px solid transparent;padding:.4em .7em;}
+  .nav-link.active{border-bottom-color:var(--gold);}
+}
+
+/* MAIN */
+main{padding-top:2.5rem; padding-bottom:4rem; min-width:0;}
+
+.module{
+  padding:2.6rem 0;
+  border-bottom:1px solid var(--line);
+  scroll-margin-top:1.2rem;
+}
+.module:last-child{border-bottom:none;}
+.module-head{margin-bottom:1rem;}
+.pill{
+  display:inline-block;
+  font-size:.74rem;
+  font-weight:600;
+  letter-spacing:.02em;
+  color:var(--navy-deep);
+  background:var(--gold);
+  padding:.28em .85em;
+  border-radius:999px;
+  margin-bottom:.7rem;
+}
+@media (prefers-color-scheme: dark){ .pill{color:#1a1200;} }
+.module h2{font-size:clamp(1.3rem,2.4vw,1.7rem);font-weight:600;max-width:28ch;}
+.module-intro{margin-top:.9rem;color:var(--ink);}
+.module-intro p{color:var(--ink);}
+
+.shot-grid{
+  margin-top:1.6rem;
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:1.4rem;
+}
+@media (max-width:900px){ .shot-grid{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:600px){ .shot-grid{grid-template-columns:1fr;} }
+
+.shot{
+  margin:0;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:4px;
+  overflow:hidden;
+  cursor:zoom-in;
+  transition:border-color .15s, transform .15s;
+}
+.shot:hover, .shot:focus-visible{border-color:var(--blue); transform:translateY(-2px);}
+.shot:focus-visible{outline:2px solid var(--blue); outline-offset:2px;}
+.shot-frame{
+  aspect-ratio:4/3.1;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  border-bottom:1px solid var(--line);
+}
+.shot-frame img{width:100%;height:100%;object-fit:contain;}
+.shot figcaption{
+  padding:.85em 1em 1.05em;
+  font-size:.86rem;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+/* LIGHTBOX */
+.lightbox{
+  position:fixed;inset:0;
+  background:rgba(5,10,20,.88);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:2rem;
+  z-index:300;
+}
+.lightbox.open{display:flex;}
+.lightbox img{max-width:100%;max-height:85vh;border-radius:4px;box-shadow:0 20px 60px rgba(0,0,0,.5);}
+.lightbox-close{
+  position:absolute;top:1.2rem;right:1.4rem;
+  background:none;border:none;color:#fff;
+  font-size:1.8rem;line-height:1;cursor:pointer;
+  width:44px;height:44px;
+}
+.lightbox-cap{
+  position:absolute;bottom:1.4rem;left:50%;transform:translateX(-50%);
+  color:#D8E0EC;font-size:.9rem;max-width:70ch;text-align:center;padding:0 1rem;
+}
+
+/* FOOTER */
+footer{
+  background:var(--navy-deep);
+  color:#B9C6DA;
+  padding:3rem 1.5rem;
+}
+footer .footer-inner{max-width:1180px;margin:0 auto;}
+footer h3{color:#fff;font-weight:600;font-size:1.2rem;margin-bottom:.7rem;}
+footer p{color:#B9C6DA;max-width:60ch;}
+footer a{color:var(--gold);}
+footer .contact{
+  margin-top:1.2rem;
+  font-size:.9rem;
+  color:#D8E0EC;
+  font-weight:500;
+}
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow-pill">Pitt EDGE &middot; Faculty Training Course</span>
+    <h1>Designing a Faculty Onboarding Course for Online Teaching in Canvas</h1>
+    <p class="dek">An instructional design portfolio piece: an eleven-module Canvas course that trains faculty on <strong>every major teaching tool</strong> in the Pitt EDGE stack &mdash; from secure testing and interactive content to live sessions and peer review.</p>
+    <p class="byline">Deanna Gilkey Schmuck, MS</p>
+    <div class="stat-row">
+      <div><div class="stat-num">11</div><div class="stat-label">course modules</div></div>
+      <div><div class="stat-num">9</div><div class="stat-label">tools &amp; platforms covered</div></div>
+      <div><div class="stat-num">50+</div><div class="stat-label">built activities &amp; guides</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="edit-note">
+  <p>&mdash; Add a link back to your resume or LinkedIn here before sharing.</p>
+</div>
+
+<div class="layout">
+  <nav class="sidenav" aria-label="Module navigation">
+          <a class="nav-link" href="#overview" data-target="overview">Overview</a>
+          <a class="nav-link" href="#module-0" data-target="module-0">Module 0</a>
+          <a class="nav-link" href="#module-1" data-target="module-1">Module 1</a>
+          <a class="nav-link" href="#module-2" data-target="module-2">Module 2</a>
+          <a class="nav-link" href="#module-3" data-target="module-3">Module 3</a>
+          <a class="nav-link" href="#bugherd" data-target="bugherd">Module 4</a>
+          <a class="nav-link" href="#module-5" data-target="module-5">Module 5</a>
+          <a class="nav-link" href="#module-6" data-target="module-6">Module 6</a>
+          <a class="nav-link" href="#module-8" data-target="module-8">Module 8</a>
+          <a class="nav-link" href="#module-9" data-target="module-9">Module 9</a>
+          <a class="nav-link" href="#module-10" data-target="module-10">Module 10</a>
+  </nav>
+
+  <main id="main-content">
+
+      <section class="module" id="overview">
+        <div class="module-head">
+          <span class="pill">Program</span>
+          <h2>Designing Faculty Onboarding for Canvas at Pitt EDGE</h2>
+        </div>
+        <div class="module-intro">
+          <p>Pitt EDGE builds and maintains online course shells in Canvas through a structured collaboration between faculty, instructional designers, instructional technologists, and quality assurance specialists. This course trains faculty on the full toolkit they'll use to teach online &mdash; from secure testing to interactive content to discussion tools.</p>
+          <p>The work below covers the course's full module sequence: platform orientation, each major third-party tool, and the review workflow that keeps everything accurate before launch.</p>
+        </div>
+        <div class="shot-grid">
+          <figure class="shot" data-full="assets/team-diagram.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/team-diagram.png" alt="The collaboration model behind every course build: faculty supply content and feedback, the instructional designer manages the build in Canvas, instructional technologists handle tool setup and training, and QA signs off on usability and accuracy before students see it." loading="lazy"></div>
+            <figcaption>The collaboration model behind every course build: faculty supply content and feedback, the instructional designer manages the build in Canvas, instructional technologists handle tool setup and training, and QA signs off on usability and accuracy before students see it.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="module" id="module-0">
+        <div class="module-head">
+          <span class="pill">Module 0</span>
+          <h2>Orienting Faculty and Students to the Platform</h2>
+        </div>
+        <div class="module-intro">
+          <p>Before any tool-specific training starts, faculty and students need a shared baseline: where things live in Canvas, who to contact when something breaks, and which technologies this course actually uses. Module 0 front-loads that orientation so later modules can stay focused on teaching decisions rather than basic navigation.</p>
+        </div>
+        <div class="shot-grid">
+          <figure class="shot" data-full="assets/m0-canvas-support.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m0-canvas-support.png" alt="A short-video library covering the core Canvas tasks &amp;mdash; submitting, discussing, checking grades &amp;mdash; organized as a quick-reference tab set rather than a long scroll." loading="lazy"></div>
+            <figcaption>A short-video library covering the core Canvas tasks &mdash; submitting, discussing, checking grades &mdash; organized as a quick-reference tab set rather than a long scroll.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m0-tech-support.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m0-tech-support.png" alt="A single landing point for every support channel (24/7 desk, IT help desk, knowledge guides), so faculty stop guessing which office owns which problem." loading="lazy"></div>
+            <figcaption>A single landing point for every support channel (24/7 desk, IT help desk, knowledge guides), so faculty stop guessing which office owns which problem.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m0-tech-platforms.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m0-tech-platforms.png" alt="A toolkit reference for every platform the course touches, with Respondus expanded here to show the level of operational detail &amp;mdash; what it does, what it blocks, and who needs to install what." loading="lazy"></div>
+            <figcaption>A toolkit reference for every platform the course touches, with Respondus expanded here to show the level of operational detail &mdash; what it does, what it blocks, and who needs to install what.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="module" id="module-1">
+        <div class="module-head">
+          <span class="pill">Module 1</span>
+          <h2>Secure Testing with Respondus</h2>
+        </div>
+        <div class="module-intro">
+          <p>Respondus LockDown Browser and Monitor are often the first unfamiliar tool a faculty member has to configure. This module pairs a low-stakes, unlimited-attempt knowledge check with a summary that explicitly previews what's coming next, so faculty always know where they are in the sequence.</p>
+        </div>
+        <div class="shot-grid">
+          <figure class="shot" data-full="assets/m1-knowledge-check.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m1-knowledge-check.png" alt="A drag-and-drop knowledge check built so faculty can fail safely &amp;mdash; unlimited attempts, no time limit, explicitly framed as review rather than assessment." loading="lazy"></div>
+            <figcaption>A drag-and-drop knowledge check built so faculty can fail safely &mdash; unlimited attempts, no time limit, explicitly framed as review rather than assessment.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m1-summary.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m1-summary.png" alt="The module wrap-up restates what was just covered in plain language and names the next tool (Harmonize) before the faculty member clicks away." loading="lazy"></div>
+            <figcaption>The module wrap-up restates what was just covered in plain language and names the next tool (Harmonize) before the faculty member clicks away.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="module" id="module-2">
+        <div class="module-head">
+          <span class="pill">Module 2</span>
+          <h2>Deepening Discussions with Harmonize</h2>
+        </div>
+        <div class="module-intro">
+          <p>Harmonize layers richer discussion features on top of Canvas's native tool. Rather than just listing features, this module argues for the tool by contrasting it directly against what faculty already know, then hands them the setup mechanics once they're convinced it's worth the switch.</p>
+        </div>
+        <div class="shot-grid">
+          <figure class="shot" data-full="assets/m2-harmonize-overview.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m2-harmonize-overview.png" alt="Opens with what students can actually do &amp;mdash; post video, audio, or text, and participate in structured, rubric-based exchanges &amp;mdash; before any setup instructions." loading="lazy"></div>
+            <figcaption>Opens with what students can actually do &mdash; post video, audio, or text, and participate in structured, rubric-based exchanges &mdash; before any setup instructions.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m2-harmonize-vs-canvas.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m2-harmonize-vs-canvas.png" alt="A side-by-side comparison against native Canvas Discussions, built around the problems faculty already recognize: manual review, invisible engagement, workload at scale." loading="lazy"></div>
+            <figcaption>A side-by-side comparison against native Canvas Discussions, built around the problems faculty already recognize: manual review, invisible engagement, workload at scale.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m2-harmonize-settings.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m2-harmonize-settings.png" alt="A card carousel breaking down how Harmonize&#x27;s milestones read Canvas&#x27;s own assignment dates rather than replacing them &amp;mdash; an important distinction faculty need before they set up their first discussion." loading="lazy"></div>
+            <figcaption>A card carousel breaking down how Harmonize's milestones read Canvas's own assignment dates rather than replacing them &mdash; an important distinction faculty need before they set up their first discussion.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m2-harmonize-wizard.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m2-harmonize-wizard.png" alt="Documents the Harmonize Wizard and AI-assisted instruction generator side by side with the rubric sync, showing faculty three ways to speed up discussion setup without losing control over the prompt." loading="lazy"></div>
+            <figcaption>Documents the Harmonize Wizard and AI-assisted instruction generator side by side with the rubric sync, showing faculty three ways to speed up discussion setup without losing control over the prompt.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m2-interaction-tools.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m2-interaction-tools.png" alt="An expandable accordion separating communication tools (polls, Q&amp;A, chat) from content tools (PDF and image annotation) by instructional purpose, not just feature name." loading="lazy"></div>
+            <figcaption>An expandable accordion separating communication tools (polls, Q&A, chat) from content tools (PDF and image annotation) by instructional purpose, not just feature name.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="module" id="module-3">
+        <div class="module-head">
+          <span class="pill">Module 3</span>
+          <h2>Building Assessments in ExamSoft</h2>
+        </div>
+        <div class="module-intro">
+          <p>ExamSoft is the most operationally dense tool in the course, so this module is built around a single visual anchor &mdash; Set Up &rarr; Build &rarr; Deliver &mdash; that recurs on every page. Each page answers one decision faculty actually have to make, like Blueprint vs. standalone, rather than documenting every field in the interface.</p>
+        </div>
+        <div class="shot-grid">
+          <figure class="shot" data-full="assets/m3-workflow.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m3-workflow.png" alt="The three-step workflow banner used throughout the module, giving faculty a consistent map of where each page&#x27;s content fits." loading="lazy"></div>
+            <figcaption>The three-step workflow banner used throughout the module, giving faculty a consistent map of where each page's content fits.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m3-create-assessment.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m3-create-assessment.png" alt="Walks through the Create Assessment dialog, with a side-by-side explainer clarifying that Exam/Quiz/Assignment are organizational labels only &amp;mdash; they don&#x27;t change grading or security." loading="lazy"></div>
+            <figcaption>Walks through the Create Assessment dialog, with a side-by-side explainer clarifying that Exam/Quiz/Assignment are organizational labels only &mdash; they don't change grading or security.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m3-blueprint.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m3-blueprint.png" alt="A decision page, not a how-to: faculty guidance on when Blueprint&#x27;s centralized, multi-section control is worth the trade-off against a standalone assessment." loading="lazy"></div>
+            <figcaption>A decision page, not a how-to: faculty guidance on when Blueprint's centralized, multi-section control is worth the trade-off against a standalone assessment.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m3-question-editor.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m3-question-editor.png" alt="A fully labeled diagram of the question editor, so faculty can locate any field by what it does rather than hunting through the live interface." loading="lazy"></div>
+            <figcaption>A fully labeled diagram of the question editor, so faculty can locate any field by what it does rather than hunting through the live interface.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m3-categories.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m3-categories.png" alt="Explains where categories come from and who&#x27;s responsible for creating them, correcting a common assumption that faculty build the taxonomy themselves." loading="lazy"></div>
+            <figcaption>Explains where categories come from and who's responsible for creating them, correcting a common assumption that faculty build the taxonomy themselves.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m3-attach-rubric.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m3-attach-rubric.png" alt="Shows the exact toggle sequence for attaching a rubric to an essay question, paired with an annotated screenshot of the question as faculty will actually see it." loading="lazy"></div>
+            <figcaption>Shows the exact toggle sequence for attaching a rubric to an essay question, paired with an annotated screenshot of the question as faculty will actually see it.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m3-reports.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m3-reports.png" alt="Breaks down the three report views (class, student, summary) by what question each one answers, not just what data it contains." loading="lazy"></div>
+            <figcaption>Breaks down the three report views (class, student, summary) by what question each one answers, not just what data it contains.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="module" id="bugherd">
+        <div class="module-head">
+          <span class="pill">Module 4</span>
+          <h2>Closing the Loop with BugHerd</h2>
+        </div>
+        <div class="module-intro">
+          <p>Once a course is built, faculty need a way to flag problems without writing a formal bug report. This module documents BugHerd, which turns point-and-click feedback on the live course into tracked tasks for the instructional designer &mdash; explaining that handoff to both sides of it.</p>
+        </div>
+        <div class="shot-grid">
+          <figure class="shot" data-full="assets/bugherd-what-is.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/bugherd-what-is.png" alt="Introduces the tool with its most concrete analogy first &amp;mdash; a digital sticky note tied to an exact spot on the page &amp;mdash; before any setup steps." loading="lazy"></div>
+            <figcaption>Introduces the tool with its most concrete analogy first &mdash; a digital sticky note tied to an exact spot on the page &mdash; before any setup steps.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/bugherd-use-case.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/bugherd-use-case.png" alt="A six-step example walking the full loop: an ID shares a review link, faculty leave point-and-click comments, and those comments land as tasks on the ID&#x27;s board." loading="lazy"></div>
+            <figcaption>A six-step example walking the full loop: an ID shares a review link, faculty leave point-and-click comments, and those comments land as tasks on the ID's board.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/bugherd-roles-table.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/bugherd-roles-table.png" alt="A role-by-role comparison table (Project Owner vs. Client) answering the question every new user asks first: what am I actually supposed to do here?" loading="lazy"></div>
+            <figcaption>A role-by-role comparison table (Project Owner vs. Client) answering the question every new user asks first: what am I actually supposed to do here?</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/bugherd-troubleshoot.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/bugherd-troubleshoot.png" alt="A compact troubleshooting checklist for the single most common support request &amp;mdash; the sidebar not appearing &amp;mdash; written as steps to try, not just causes." loading="lazy"></div>
+            <figcaption>A compact troubleshooting checklist for the single most common support request &mdash; the sidebar not appearing &mdash; written as steps to try, not just causes.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="module" id="module-5">
+        <div class="module-head">
+          <span class="pill">Module 5</span>
+          <h2>Running Live Sessions in Zoom</h2>
+        </div>
+        <div class="module-intro">
+          <p>Zoom's documentation needed to cover two different audiences at once: faculty running the session and students joining it. This module interleaves instructor-facing setup with a dedicated student troubleshooting guide, and uses flip-cards to keep dense settings information from overwhelming the page.</p>
+        </div>
+        <div class="shot-grid">
+          <figure class="shot" data-full="assets/m5-intro.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m5-intro.png" alt="States learning objectives and guiding questions up front, so faculty can self-select which sections they actually need." loading="lazy"></div>
+            <figcaption>States learning objectives and guiding questions up front, so faculty can self-select which sections they actually need.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m5-schedule.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m5-schedule.png" alt="Flip-cards covering meeting setup decisions &amp;mdash; recurring vs. one-off, security settings, recording location &amp;mdash; that reveal detail on demand instead of front-loading every option." loading="lazy"></div>
+            <figcaption>Flip-cards covering meeting setup decisions &mdash; recurring vs. one-off, security settings, recording location &mdash; that reveal detail on demand instead of front-loading every option.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m5-recording-locations.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m5-recording-locations.png" alt="An infographic resolving one of the most common support questions: where a recording actually ends up depends on how the meeting was scheduled and whether Panopto is configured for the course." loading="lazy"></div>
+            <figcaption>An infographic resolving one of the most common support questions: where a recording actually ends up depends on how the meeting was scheduled and whether Panopto is configured for the course.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m5-participant-controls.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m5-participant-controls.png" alt="Pairs a short video with flip-cards on muting, video permissions, and renaming participants &amp;mdash; the controls instructors reach for most during a live session." loading="lazy"></div>
+            <figcaption>Pairs a short video with flip-cards on muting, video permissions, and renaming participants &mdash; the controls instructors reach for most during a live session.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m5-breakout-rooms.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m5-breakout-rooms.png" alt="Organizes best practices by timing &amp;mdash; before, during, and after &amp;mdash; rather than as a single undifferentiated list." loading="lazy"></div>
+            <figcaption>Organizes best practices by timing &mdash; before, during, and after &mdash; rather than as a single undifferentiated list.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m5-troubleshooting.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m5-troubleshooting.png" alt="A self-service guide for the most common student-side Zoom issues, so faculty can point students here before escalating to IT." loading="lazy"></div>
+            <figcaption>A self-service guide for the most common student-side Zoom issues, so faculty can point students here before escalating to IT.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="module" id="module-6">
+        <div class="module-head">
+          <span class="pill">Module 6</span>
+          <h2>Visual Collaboration with Lucid</h2>
+        </div>
+        <div class="module-intro">
+          <p>Lucid's two products &mdash; Lucidchart for diagrams, Lucidspark for whiteboards &mdash; get taught through contrast. The module embeds one editable board and one view-only board side by side, so faculty directly experience the permission difference instead of just reading about it.</p>
+        </div>
+        <div class="shot-grid">
+          <figure class="shot" data-full="assets/m6-content-selector.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m6-content-selector.png" alt="A hotspot-labeled walkthrough of the first screen faculty see when launching Lucid from Canvas, oriented around where to click rather than what each panel is called." loading="lazy"></div>
+            <figcaption>A hotspot-labeled walkthrough of the first screen faculty see when launching Lucid from Canvas, oriented around where to click rather than what each panel is called.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m6-lucidspark-overview.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m6-lucidspark-overview.png" alt="Introduces Lucidspark with a video plus a hands-on practice file, explicitly marked ungraded so faculty can explore without worrying about a right answer." loading="lazy"></div>
+            <figcaption>Introduces Lucidspark with a video plus a hands-on practice file, explicitly marked ungraded so faculty can explore without worrying about a right answer.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m6-faq.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m6-faq.png" alt="An eleven-question FAQ accordion addressing the practical realities of embedding &amp;mdash; cookie prompts, who sees updates, whether students can edit the source document." loading="lazy"></div>
+            <figcaption>An eleven-question FAQ accordion addressing the practical realities of embedding &mdash; cookie prompts, who sees updates, whether students can edit the source document.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m6-example-collab.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m6-example-collab.png" alt="A live, editable Lucidspark board embedded with Edit permissions, built around a nursing patient-fall-risk scenario so the collaboration is grounded in real course content." loading="lazy"></div>
+            <figcaption>A live, editable Lucidspark board embedded with Edit permissions, built around a nursing patient-fall-risk scenario so the collaboration is grounded in real course content.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m6-example-showcase.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m6-example-showcase.png" alt="The same tool, opposite permission: a View Only board designed purely to demonstrate layout and organization technique, with explicit prompts about what to notice." loading="lazy"></div>
+            <figcaption>The same tool, opposite permission: a View Only board designed purely to demonstrate layout and organization technique, with explicit prompts about what to notice.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m6-review-compare.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m6-review-compare.png" alt="Closes the loop with a direct comparison table and reflection questions, asking faculty to connect what they just saw to decisions in their own course." loading="lazy"></div>
+            <figcaption>Closes the loop with a direct comparison table and reflection questions, asking faculty to connect what they just saw to decisions in their own course.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="module" id="module-8">
+        <div class="module-head">
+          <span class="pill">Module 8</span>
+          <h2>Supporting Self-Study with Osmosis</h2>
+        </div>
+        <div class="module-intro">
+          <p>Osmosis isn't integrated with Canvas, so every example in this module has to bridge two systems: instructions live in Canvas, the actual work happens in Osmosis, and a reflection brings the student back. The module also draws a clear line between flashcards (recall) and questions (application) so faculty choose the right tool for their learning goal.</p>
+        </div>
+        <div class="shot-grid">
+          <figure class="shot" data-full="assets/m8-curated-playlist.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m8-curated-playlist.png" alt="A full example assignment built around a curated video playlist, including total viewing time and reflection questions &amp;mdash; a ready-to-adapt template, not just a description." loading="lazy"></div>
+            <figcaption>A full example assignment built around a curated video playlist, including total viewing time and reflection questions &mdash; a ready-to-adapt template, not just a description.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m8-flashcard-assignment.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m8-flashcard-assignment.png" alt="A flashcard reflection assignment scoped to a specific word count and structured around four questions, so grading expectations are unambiguous before a student starts." loading="lazy"></div>
+            <figcaption>A flashcard reflection assignment scoped to a specific word count and structured around four questions, so grading expectations are unambiguous before a student starts.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m8-flashcard-application.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m8-flashcard-application.png" alt="A second flashcard assignment variant that pushes further into application &amp;mdash; asking students to write their own quiz questions from what they reviewed." loading="lazy"></div>
+            <figcaption>A second flashcard assignment variant that pushes further into application &mdash; asking students to write their own quiz questions from what they reviewed.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m8-questions-intro.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m8-questions-intro.png" alt="A side-by-side flashcard-vs-question example using the same clinical topic, making the recall-versus-application distinction concrete rather than abstract." loading="lazy"></div>
+            <figcaption>A side-by-side flashcard-vs-question example using the same clinical topic, making the recall-versus-application distinction concrete rather than abstract.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m8-questions-assignment.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m8-questions-assignment.png" alt="A complete Osmosis Questions assignment with exact step counts and an explicit note on the Canvas/Osmosis integration gap faculty need to plan around." loading="lazy"></div>
+            <figcaption>A complete Osmosis Questions assignment with exact step counts and an explicit note on the Canvas/Osmosis integration gap faculty need to plan around.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m8-knowledge-check.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m8-knowledge-check.png" alt="A drag-and-drop review tying the module&#x27;s key terms together, framed as unlimited-attempt practice rather than graded assessment." loading="lazy"></div>
+            <figcaption>A drag-and-drop review tying the module's key terms together, framed as unlimited-attempt practice rather than graded assessment.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="module" id="module-9">
+        <div class="module-head">
+          <span class="pill">Module 9</span>
+          <h2>Building Interactive Content with H5P</h2>
+        </div>
+        <div class="module-intro">
+          <p>H5P is the most content-creation-heavy tool in the course, so this module is organized around a Set Up / Deliver / Wrap Up arc and includes real, working examples &mdash; not just screenshots of the editor. The hotspot activity below is shown at two different attempt counts specifically to demonstrate the immediate-feedback loop in action.</p>
+        </div>
+        <div class="shot-grid">
+          <figure class="shot" data-full="assets/m9-module-outline.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m9-module-outline.png" alt="The module&#x27;s own outline, organized into Overview, Set Up, and Deliver sections &amp;mdash; a structure mirrored across every tool module in the course." loading="lazy"></div>
+            <figcaption>The module's own outline, organized into Overview, Set Up, and Deliver sections &mdash; a structure mirrored across every tool module in the course.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m9-overview-use-cases.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m9-overview-use-cases.png" alt="A content-type matrix mapping instructional goals to specific H5P formats, so faculty start from what they want students to do rather than from a feature list." loading="lazy"></div>
+            <figcaption>A content-type matrix mapping instructional goals to specific H5P formats, so faculty start from what they want students to do rather than from a feature list.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m9-content-types.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m9-content-types.png" alt="Groups H5P&#x27;s content types by instructional function &amp;mdash; presenting content, assessing knowledge, increasing engagement, supporting decisions &amp;mdash; with a teaching-application example for each." loading="lazy"></div>
+            <figcaption>Groups H5P's content types by instructional function &mdash; presenting content, assessing knowledge, increasing engagement, supporting decisions &mdash; with a teaching-application example for each.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m9-graded-vs-ungraded.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m9-graded-vs-ungraded.png" alt="Clarifies which H5P types report scores to the Canvas gradebook and which are exploration-only, including the exact LTI setup conditions that have to be met for grades to pass through." loading="lazy"></div>
+            <figcaption>Clarifies which H5P types report scores to the Canvas gradebook and which are exploration-only, including the exact LTI setup conditions that have to be met for grades to pass through.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m9-hotspot-student-view.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m9-hotspot-student-view.png" alt="A working image-hotspot activity on the Roman Forum, shown here at nine attempts with 100% accuracy on the last try &amp;mdash; the immediate-feedback loop faculty are meant to replicate." loading="lazy"></div>
+            <figcaption>A working image-hotspot activity on the Roman Forum, shown here at nine attempts with 100% accuracy on the last try &mdash; the immediate-feedback loop faculty are meant to replicate.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m9-hotspot-edit-view.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m9-hotspot-edit-view.png" alt="The authoring side of the same activity: marking a hotspot correct and writing the feedback text students see the moment they click it." loading="lazy"></div>
+            <figcaption>The authoring side of the same activity: marking a hotspot correct and writing the feedback text students see the moment they click it.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m9-hotspot-second-attempt.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m9-hotspot-second-attempt.png" alt="The same activity captured mid-progress, at 33% accuracy across eleven attempts &amp;mdash; included to show the retry experience, not just the finished state." loading="lazy"></div>
+            <figcaption>The same activity captured mid-progress, at 33% accuracy across eleven attempts &mdash; included to show the retry experience, not just the finished state.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m9-flashcards-art.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m9-flashcards-art.png" alt="A second H5P format in the same module: art-identification flashcards with an explicit note on answer precision, so students know exactly what counts as correct." loading="lazy"></div>
+            <figcaption>A second H5P format in the same module: art-identification flashcards with an explicit note on answer precision, so students know exactly what counts as correct.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m9-first-content-video.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m9-first-content-video.png" alt="A short walkthrough video paired with a universal four-step workflow &amp;mdash; select, configure, save, test &amp;mdash; that applies across nearly every H5P content type." loading="lazy"></div>
+            <figcaption>A short walkthrough video paired with a universal four-step workflow &mdash; select, configure, save, test &mdash; that applies across nearly every H5P content type.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="module" id="module-10">
+        <div class="module-head">
+          <span class="pill">Module 10</span>
+          <h2>Grounding Learning in Patient Cases with ReelDx</h2>
+        </div>
+        <div class="module-intro">
+          <p>ReelDx's library of authentic patient videos is the kind of resource that's easy to drown faculty in. This module leads with an interactive platform tour, then narrows immediately to the two decisions that matter most: how to filter a 700-case library, and how to turn a case into a graded Canvas assignment.</p>
+        </div>
+        <div class="shot-grid">
+          <figure class="shot" data-full="assets/m10-intro.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m10-intro.png" alt="States the module&#x27;s clinical-reasoning goal up front &amp;mdash; locating, organizing, and sharing authentic patient encounters &amp;mdash; before any platform mechanics." loading="lazy"></div>
+            <figcaption>States the module's clinical-reasoning goal up front &mdash; locating, organizing, and sharing authentic patient encounters &mdash; before any platform mechanics.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m10-platform-overview.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m10-platform-overview.png" alt="An interactive tour plus a feature table (Case Library, Courses, Collections, Members) tied directly to how faculty would use each one." loading="lazy"></div>
+            <figcaption>An interactive tour plus a feature table (Case Library, Courses, Collections, Members) tied directly to how faculty would use each one.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m10-filters.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m10-filters.png" alt="Breaks filtering strategy into three practical scenarios &amp;mdash; by content, by patient population, by refining results &amp;mdash; rather than listing every filter option." loading="lazy"></div>
+            <figcaption>Breaks filtering strategy into three practical scenarios &mdash; by content, by patient population, by refining results &mdash; rather than listing every filter option.</figcaption>
+          </figure>
+
+          <figure class="shot" data-full="assets/m10-example-assignments.png" tabindex="0" role="button" aria-label="Open larger view">
+            <div class="shot-frame"><img src="assets/m10-example-assignments.png" alt="Two ready-to-adapt Canvas assignments built around ReelDx collections, each scoped with specific reflection prompts so faculty can see the full arc from case to student deliverable." loading="lazy"></div>
+            <figcaption>Two ready-to-adapt Canvas assignments built around ReelDx collections, each scoped with specific reflection prompts so faculty can see the full arc from case to student deliverable.</figcaption>
+          </figure>
+        </div>
+      </section>
+  </main>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <h3>About this build</h3>
+    <p>Every screenshot above comes from the live Canvas course. Captions describe the instructional decision behind each screen, not just what's on it. Get in touch to walk through the full course or discuss the design process in more detail.</p>
+    <p class="contact">Deanna Gilkey Schmuck, MS &mdash; <a href="mailto:deannagilkey@comcast.net">deannagilkey@comcast.net</a> &middot; <a href="mailto:deannagilkey@gmail.com">deannagilkey@gmail.com</a> &middot; <a href="tel:+14123029025">412-302-9025</a></p>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Expanded screenshot">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+  <img id="lightboxImg" src="" alt="">
+  <div class="lightbox-cap" id="lightboxCap"></div>
+</div>
+
+<script>
+(function(){
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lightboxImg');
+  var lbCap = document.getElementById('lightboxCap');
+  var lbClose = document.getElementById('lightboxClose');
+
+  function openLightbox(src, cap){
+    lbImg.src = src;
+    lbImg.alt = cap;
+    lbCap.textContent = cap;
+    lb.classList.add('open');
+  }
+  function closeLightbox(){
+    lb.classList.remove('open');
+    lbImg.src = '';
+  }
+
+  document.querySelectorAll('.shot').forEach(function(el){
+    el.addEventListener('click', function(){
+      var full = el.getAttribute('data-full');
+      var cap = el.querySelector('figcaption').textContent;
+      openLightbox(full, cap);
+    });
+    el.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        el.click();
+      }
+    });
+  });
+
+  lbClose.addEventListener('click', closeLightbox);
+  lb.addEventListener('click', function(e){ if(e.target === lb) closeLightbox(); });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeLightbox();
+  });
+
+  /* scroll-spy for side nav */
+  var sections = Array.prototype.slice.call(document.querySelectorAll('.module'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav-link'));
+  function onScroll(){
+    var pos = window.scrollY + 140;
+    var current = sections[0] && sections[0].id;
+    sections.forEach(function(s){
+      if (s.offsetTop <= pos) current = s.id;
+    });
+    links.forEach(function(l){
+      l.classList.toggle('active', l.getAttribute('data-target') === current);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
+
+</body>
+</html>
